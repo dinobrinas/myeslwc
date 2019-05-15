@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>openReservationSubtab</name>
+        <label>openReservationSubtab</label>
+        <locationX>386</locationX>
+        <locationY>430</locationY>
+        <actionName>c:openRecordAction</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>sobject</name>
+            <value>
+                <elementReference>ReservationAPIName</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>varReservationId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <constants>
         <name>Contact</name>
         <dataType>String</dataType>
@@ -168,8 +188,11 @@
     <recordUpdates>
         <name>updateContact</name>
         <label>updateContact</label>
-        <locationX>474</locationX>
-        <locationY>429</locationY>
+        <locationX>578</locationX>
+        <locationY>433</locationY>
+        <connector>
+            <targetReference>openReservationSubtab</targetReference>
+        </connector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -188,8 +211,11 @@
     <recordUpdates>
         <name>updateLead</name>
         <label>updateLead</label>
-        <locationX>291</locationX>
-        <locationY>433</locationY>
+        <locationX>165</locationX>
+        <locationY>430</locationY>
+        <connector>
+            <targetReference>openReservationSubtab</targetReference>
+        </connector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -220,13 +246,57 @@
             <name>CustomerDetailscmp</name>
             <extensionName>c:customerDetails</extensionName>
             <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>varRecordId</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sobject</name>
+                <value>
+                    <elementReference>varSobjectType</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>state</name>
+                <value>
+                    <elementReference>varState</elementReference>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>varMarket</assignToReference>
+                <name>requestedMarket</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>varNoOfGuests</assignToReference>
+                <name>numberOfPeople</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>varResLenght</assignToReference>
+                <name>endDays</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>varStartDate</assignToReference>
+                <name>startDate</name>
+            </outputParameters>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <startElementReference>CustomerDetails</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
+    <variables>
+        <name>ReservationAPIName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Reservation__c</stringValue>
+        </value>
+    </variables>
     <variables>
         <name>varMarket</name>
         <dataType>String</dataType>

@@ -4,6 +4,13 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>sobject</name>
+                <value>Lead</value>
+            </componentInstanceProperties>
+            <componentName>customerList</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>sobject</name>
                 <value>Contact</value>
             </componentInstanceProperties>
             <componentName>customerList</componentName>
